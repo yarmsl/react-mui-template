@@ -1,0 +1,3 @@
+interface UIState {
+  darkMode: boolean;
+}
