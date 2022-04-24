@@ -1,4 +1,6 @@
 import { Dialog } from '@mui/material';
+import { memo } from 'react';
+import { v4 } from 'uuid';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { closeModalAction } from '../../../store/ModalStack';
 
@@ -8,10 +10,10 @@ const ModalStack: React.FC = () => {
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {modalStack?.map((modal) => (
+      {modalStack.map((modal) => (
         <Dialog
           PaperProps={{ sx: { bgcolor: 'transparent', boxShadow: 5 } }}
-          key={`${Date.now()}`}
+          key={v4()}
           open={modal.open}
           onClose={() => dispatch(closeModalAction())}
         >
@@ -22,4 +24,4 @@ const ModalStack: React.FC = () => {
   );
 };
 
-export default ModalStack;
+export default memo(ModalStack);

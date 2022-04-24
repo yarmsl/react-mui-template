@@ -4,7 +4,7 @@ import { IModalStack, ModalStackTypes } from './types';
 const initialState: IModalStack[] = [];
 
 export const ModalStackSlice = createSlice({
-  name: 'modal stack',
+  name: 'modalStack',
   initialState,
   reducers: {
     openModal: (state, action: PayloadAction<ModalStackTypes>) => {
