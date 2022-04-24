@@ -8,9 +8,9 @@ import {
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { ModalStackReducer } from './ModalStack';
-import { notificationsReducer } from './Notifications';
 import { UIReducer } from './UI';
 import { TokenMiddleware } from './Auth/Auth.middleware';
+import { SnackStackReducer } from './SnackStack';
 
 const UIPersistConfig = {
   key: 'ui',
@@ -19,8 +19,8 @@ const UIPersistConfig = {
 };
 
 const rootReducer = combineReducers({
-  notifications: notificationsReducer,
   modalStack: ModalStackReducer,
+  snackStack: SnackStackReducer,
   ui: persistReducer(UIPersistConfig, UIReducer),
 });
 

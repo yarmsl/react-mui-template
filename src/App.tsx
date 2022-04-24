@@ -7,14 +7,12 @@ import {
 import { createTheme } from '@mui/material/styles';
 import { BrowserRouter } from 'react-router-dom';
 import { useAppSelector } from 'store';
-import useNotifier from './lib/Notifer';
+import SnackStack from 'UI/atoms/SnackStack/SnackStack';
 import ModalStack from './UI/atoms/ModalStack/ModalStack';
 import Router from './Router';
-
 import { theme } from './UI/theme';
 
 const App = (): ReactElement => {
-  useNotifier();
   const { darkMode } = useAppSelector((st) => st.ui);
   const currentTheme = useMemo(() => createTheme(theme(darkMode)), [darkMode]);
 
@@ -25,6 +23,7 @@ const App = (): ReactElement => {
         <BrowserRouter>
           <Router />
         </BrowserRouter>
+        <SnackStack />
         <ModalStack />
       </ThemeProvider>
     </StyledEngineProvider>
