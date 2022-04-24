@@ -11,6 +11,11 @@ export interface ISnackbar {
   };
 }
 
+export interface ISnackbarAction {
+  message: string;
+  variant?: VariantType;
+}
+
 export interface INotifications {
   snackbars: ISnackbar[];
 }
