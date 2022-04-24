@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SnackbarKey } from 'notistack';
-import { ICloseSnackbarAction, INotifications, ISnackbar } from './types';
+import {
+  ICloseSnackbarAction,
+  INotifications,
+  ISnackbar,
+  ISnackbarAction,
+} from './types';
 
 const initialState: INotifications = {
   snackbars: [],
@@ -12,6 +17,16 @@ export const notificationsSlice = createSlice({
   reducers: {
     enqueueSnackbar: (state, action: PayloadAction<ISnackbar>) => {
       state.snackbars.push(action.payload);
+    },
+    showSnackbar: (state, action: PayloadAction<ISnackbarAction>) => {
+      state.snackbars.push({
+        dismissed: false,
+        message: action.payload.message,
+        options: {
+          variant: action.payload.variant || 'default',
+          key: Date.now() + Math.random(),
+        },
+      });
     },
     closeSnackbar: (state, action: PayloadAction<ICloseSnackbarAction>) => {
       state.snackbars = state.snackbars.map((notification) =>
@@ -29,6 +44,6 @@ export const notificationsSlice = createSlice({
   },
 });
 
-export const { enqueueSnackbar, closeSnackbar, removeSnackbar } =
+export const { enqueueSnackbar, closeSnackbar, removeSnackbar, showSnackbar } =
   notificationsSlice.actions;
 export const { reducer: notificationsReducer } = notificationsSlice;
